@@ -1,0 +1,17 @@
+.top-logo{
+    width: 300px !important;
+}
+.signIn-area img {
+    width: 40px;
+}
+.signIn-area main{
+    width: 40%;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    padding: 150px 50px;
+}
+.signIn-area div{
+    border: 1px solid lightgrey;
+    padding:2px 20px;
+    border-radius: 30px;
+}

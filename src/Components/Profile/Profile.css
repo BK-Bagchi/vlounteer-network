@@ -1,0 +1,17 @@
+.profile .item{
+    width:30%;
+    min-width: 415px;
+    background:lemonchiffon;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 15px;
+}
+.profile button{
+    position:absolute;
+    bottom:0;
+    right: 0;
+    border: none;
+    outline: none;
+    padding: 7px 25px;
+    border-radius: 5px;
+}

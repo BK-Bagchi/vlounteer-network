@@ -1,0 +1,61 @@
+.navbar{
+    height: 79px;
+    background: white !important;
+    z-index: 11;
+}
+.navbar .logo{
+    width: 200px;
+}
+.navbar .register,
+.navbar .admin,
+.volunteering-contents button{
+    border: none;
+    outline: none;
+    padding:7px 18px;
+    border-radius: 5px;
+    color:white;
+}
+.navbar .register{
+    background: royalblue;
+}
+.navbar .admin{
+    background: black;
+}
+.nav-link{
+    display: flex;
+    align-items: center;
+}
+.volunteering-contents input{
+    border: 1px solid lightgrey;
+    border-right: none;
+    outline: none;
+    padding: 0 5px;
+    height: 40px;
+    width: 25%;
+    border-radius: 5px 0 0 5px;
+}
+.volunteering-contents button{
+    padding: 0 5px;
+    width: 90px;
+    border-radius: 0 5px 5px 0;
+    background: royalblue;
+}
+.volunteering-contents .each-item{
+    width: 23%;
+    min-width: 230px;
+    overflow: hidden;
+    background: red;
+    border-radius:12px;
+}
+.each-item img{
+    transition: 0.5s;
+    max-height: 75%;
+}
+.each-item img:hover{
+    transform: scale(1.05);
+}
+.each-item footer p{
+    color: white;
+    padding: 5px;
+    font-size: 27px;
+}
