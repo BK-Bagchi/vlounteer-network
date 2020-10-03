@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.css'
 import Navbar from './Navbar'
-import Image from '../../Resources/images/animalShelter.png'
+import { useEffect } from 'react';
 
 const Home = () => {
+    const [volunteeringTypes, setVolunteeringTypes] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:4000/volunteeringTypes')
+            .then(res => res.json())
+            .then(data => setVolunteeringTypes(data))
+    }, [])
+
     return (
         <>
             <Navbar />
@@ -14,42 +21,19 @@ const Home = () => {
                     <button>Search</button>
                 </div>
                 <main className="volunteering-item px-5 w-100 d-flex flex-wrap justify-content-center">
-                    <div className="each-item mx-2 my-2">
-                        <img className="w-100" src={Image} alt="Volunteering Item" />
-                        <footer className="h-25 d-flex align-items-center justify-content-center">
-                            <p className="m-0 text-center">Foster a shelter animal</p>
-                        </footer>
-                    </div>
-                    <div className="each-item mx-2 my-2">
-                        <img className="w-100" src={Image} alt="Volunteering Item" />
-                        <footer className="h-25 d-flex align-items-center justify-content-center">
-                            <p className="m-0 text-center">Foster a shelter animal</p>
-                        </footer>
-                    </div>
-                    <div className="each-item mx-2 my-2">
-                        <img className="w-100" src={Image} alt="Volunteering Item" />
-                        <footer className="h-25 d-flex align-items-center justify-content-center">
-                            <p className="m-0 text-center">Foster a shelter animal</p>
-                        </footer>
-                    </div>
-                    <div className="each-item mx-2 my-2">
-                        <img className="w-100" src={Image} alt="Volunteering Item" />
-                        <footer className="h-25 d-flex align-items-center justify-content-center">
-                            <p className="m-0 text-center">Foster a shelter animal</p>
-                        </footer>
-                    </div>
-                    <div className="each-item mx-2 my-2">
-                        <img className="w-100" src={Image} alt="Volunteering Item" />
-                        <footer className="h-25 d-flex align-items-center justify-content-center">
-                            <p className="m-0 text-center">Foster a shelter animal</p>
-                        </footer>
-                    </div>
-                    <div className="each-item mx-2 my-2">
-                        <img className="w-100" src={Image} alt="Volunteering Item" />
-                        <footer className="h-25 d-flex align-items-center justify-content-center">
-                            <p className="m-0 text-center">Foster a shelter animal</p>
-                        </footer>
-                    </div>
+                    {
+                        volunteeringTypes.map(type => {
+                            const { _id, color, image, name } = type
+                            return (
+                                <div key={_id} className="each-item mx-2 my-2" style={{ background: color }} >
+                                    <img className="w-100" src={require(`../../Resources/images/${image}`)} alt="Volunteering Item" />
+                                    <footer className="h-25 d-flex align-items-center justify-content-center">
+                                        <p className="m-0 text-center">{name}</p>
+                                    </footer>
+                                </div>
+                            )
+                        })
+                    }
                 </main>
             </section>
         </>

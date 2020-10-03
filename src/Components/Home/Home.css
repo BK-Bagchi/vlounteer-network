@@ -44,7 +44,7 @@
     width: 23%;
     min-width: 230px;
     overflow: hidden;
-    background: red;
+    /* background: red; */
     border-radius:12px;
 }
 .each-item img{
