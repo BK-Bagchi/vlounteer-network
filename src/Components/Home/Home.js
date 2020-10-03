@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Home.css'
 import Navbar from './Navbar'
-import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 
 const Home = () => {
+    const history = useHistory()
     const [volunteeringTypes, setVolunteeringTypes] = useState([])
     useEffect(() => {
         fetch('http://localhost:4000/volunteeringTypes')
             .then(res => res.json())
             .then(data => setVolunteeringTypes(data))
     }, [])
+
+    const volunteeringRegister = (type) => {
+        const { _id, name } = type
+        history.push(`/register?id=${_id}&name=${name}`)
+    }
 
     return (
         <>
@@ -25,10 +31,10 @@ const Home = () => {
                         volunteeringTypes.map(type => {
                             const { _id, color, image, name } = type
                             return (
-                                <div key={_id} className="each-item mx-2 my-2" style={{ background: color }} >
+                                <div key={_id} className="each-item mx-2 my-2" style={{ background: color }} onClick={() => volunteeringRegister(type)}>
                                     <img className="w-100" src={require(`../../Resources/images/${image}`)} alt="Volunteering Item" />
                                     <footer className="h-25 d-flex align-items-center justify-content-center">
-                                        <p className="m-0 text-center">{name}</p>
+                                        <p className="m-0 text-center text-capitalize">{name}</p>
                                     </footer>
                                 </div>
                             )
