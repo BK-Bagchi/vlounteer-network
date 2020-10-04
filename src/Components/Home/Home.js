@@ -5,11 +5,15 @@ import { useHistory } from 'react-router-dom'
 
 const Home = () => {
     const history = useHistory()
+    const [loading, setLoading] = useState(true)
     const [volunteeringTypes, setVolunteeringTypes] = useState([])
     useEffect(() => {
         fetch('https://agile-plains-56011.herokuapp.com/volunteeringTypes')
             .then(res => res.json())
-            .then(data => setVolunteeringTypes(data))
+            .then(data => {
+                setVolunteeringTypes(data)
+                setLoading(false)
+            })
     }, [])
 
     const volunteeringRegister = (type) => {
@@ -28,17 +32,22 @@ const Home = () => {
                 </div>
                 <main className="volunteering-item px-5 w-100 d-flex flex-wrap justify-content-center">
                     {
-                        volunteeringTypes.map(type => {
-                            const { _id, color, image, name } = type
-                            return (
-                                <div key={_id} className="each-item mx-2 my-2" style={{ background: color }} onClick={() => volunteeringRegister(type)}>
-                                    <img className="w-100" src={require(`../../Resources/images/${image}`)} alt="Volunteering Item" />
-                                    <footer className="h-25 d-flex align-items-center justify-content-center">
-                                        <p className="m-0 text-center text-capitalize">{name}</p>
-                                    </footer>
-                                </div>
-                            )
-                        })
+                        loading ? <h3>Loading...</h3>
+                            : <>
+                                {
+                                    volunteeringTypes.map(type => {
+                                        const { _id, color, image, name } = type
+                                        return (
+                                            <div key={_id} className="each-item mx-2 my-2" style={{ background: color }} onClick={() => volunteeringRegister(type)}>
+                                                <img className="w-100" src={require(`../../Resources/images/${image}`)} alt="Volunteering Item" />
+                                                <footer className="h-25 d-flex align-items-center justify-content-center">
+                                                    <p className="m-0 text-center text-capitalize">{name}</p>
+                                                </footer>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </>
                     }
                 </main>
             </section>

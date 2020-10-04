@@ -3,6 +3,7 @@ import './Profile.css'
 import Navbar from '../Home/Navbar'
 
 const Profile = () => {
+    const [loading, setLoading] = useState(true)
     const [detectDeleted, checkDeleted] = useState(false)
     const loginInfo = JSON.parse(sessionStorage.getItem('loginInfo'))
     const [registeredWorks, setRegisteredWorks] = useState([])
@@ -14,7 +15,10 @@ const Profile = () => {
             headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
-            .then(data => setRegisteredWorks(data))
+            .then(data => {
+                setRegisteredWorks(data)
+                setLoading(false)
+            })
     }, [detectDeleted])
 
     const cancelVolunteering = (id) => {
@@ -34,21 +38,26 @@ const Profile = () => {
             <Navbar />
             <section className="profile d-flex flex-wrap align-items-center justify-content-center">
                 {
-                    registeredWorks.map(work => {
-                        const { _id, date, volunteeringWork, image } = work
-                        return (
-                            <div key={_id} className="row item">
-                                <div className="col-6 p-0">
-                                    <img className="w-100" src={require(`../../Resources/images/${image}`)} alt="Volunteering Item" />
-                                </div>
-                                <div className="col-6 position-relative">
-                                    <h4>{volunteeringWork}</h4>
-                                    <h6>{date}</h6>
-                                    <button onClick={() => cancelVolunteering(_id)}>Cancel</button>
-                                </div>
-                            </div>
-                        )
-                    })
+                    loading ? <h3>Loading...</h3>
+                        : <>
+                            {
+                                registeredWorks.map(work => {
+                                    const { _id, date, volunteeringWork, image } = work
+                                    return (
+                                        <div key={_id} className="row item">
+                                            <div className="col-6 p-0">
+                                                <img className="w-100" src={require(`../../Resources/images/${image}`)} alt="Volunteering Item" />
+                                            </div>
+                                            <div className="col-6 position-relative">
+                                                <h4>{volunteeringWork}</h4>
+                                                <h6>{date}</h6>
+                                                <button onClick={() => cancelVolunteering(_id)}>Cancel</button>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </>
                 }
             </section>
         </>

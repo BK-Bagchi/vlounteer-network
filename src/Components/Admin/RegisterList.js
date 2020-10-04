@@ -4,11 +4,15 @@ import DeleteIcon from '@material-ui/icons/Delete'
 
 const RegisterList = () => {
     const [checkDeleted, setCheckDeleted] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [registeredVolunteers, checkRegisteredVolunteers] = useState([])
     useEffect(() => {
         fetch('https://agile-plains-56011.herokuapp.com/adminSeeAddEvents')
             .then(res => res.json())
-            .then(data => checkRegisteredVolunteers(data))
+            .then(data => {
+                checkRegisteredVolunteers(data)
+                setLoading(false)
+            })
     }, [checkDeleted])
     const deleteVolunteeringWork = (id) => {
         fetch('https://agile-plains-56011.herokuapp.com/cancelVolunteering', {
@@ -37,20 +41,25 @@ const RegisterList = () => {
                 </thead>
                 <tbody className="px-5">
                     {
-                        registeredVolunteers.map(volunteer => {
-                            const { _id, date, userName, userEmail, volunteeringWork } = volunteer
-                            return (
-                                <tr key={_id}>
-                                    <td>{userName}</td>
-                                    <td>{userEmail}</td>
-                                    <td>{date}</td>
-                                    <td>{volunteeringWork}</td>
-                                    <td className="text-center">
-                                        <span className="trash pb-2" onClick={() => deleteVolunteeringWork(_id)}><DeleteIcon /></span>
-                                    </td>
-                                </tr>
-                            )
-                        })
+                        loading ? <h3>Loading...</h3>
+                            : <>
+                                {
+                                    registeredVolunteers.map(volunteer => {
+                                        const { _id, date, userName, userEmail, volunteeringWork } = volunteer
+                                        return (
+                                            <tr key={_id}>
+                                                <td>{userName}</td>
+                                                <td>{userEmail}</td>
+                                                <td>{date}</td>
+                                                <td>{volunteeringWork}</td>
+                                                <td className="text-center">
+                                                    <span className="trash pb-2" onClick={() => deleteVolunteeringWork(_id)}><DeleteIcon /></span>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </>
                     }
                 </tbody>
             </table>
