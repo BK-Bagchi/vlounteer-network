@@ -60,3 +60,9 @@
 .add-event form input[type="file"]{
     border: none;
 }
+.add-event .error{
+    color: red;
+}
+.add-event .error::before{
+    content: "*";
+}
