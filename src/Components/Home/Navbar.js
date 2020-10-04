@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './Home.css'
 import Logo from '../../Resources/logos/Group1329.png'
 import { Link, useHistory } from 'react-router-dom'
-import { GlobalData } from '../Main/Main';
 
 const Navbar = () => {
     const history = useHistory()
-    const loginInfo = useContext(GlobalData).login[0]
+    const loginInfo = JSON.parse(sessionStorage.getItem('loginInfo'))
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
             <img className="logo" src={Logo} alt="Logo" onClick={() => history.push('/')} />

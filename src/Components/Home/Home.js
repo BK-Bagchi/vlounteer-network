@@ -7,7 +7,7 @@ const Home = () => {
     const history = useHistory()
     const [volunteeringTypes, setVolunteeringTypes] = useState([])
     useEffect(() => {
-        fetch('http://localhost:4000/volunteeringTypes')
+        fetch('https://agile-plains-56011.herokuapp.com/volunteeringTypes')
             .then(res => res.json())
             .then(data => setVolunteeringTypes(data))
     }, [])

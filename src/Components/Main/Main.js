@@ -10,7 +10,8 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute'
 export const GlobalData = React.createContext()
 const Main = () => {
     const [loginInfo, setLoginInfo] = useState({})
-    console.log(loginInfo)
+    if (loginInfo.isLoggedIn) sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo))
+
     return (
         <>
             <GlobalData.Provider value={{ login: [loginInfo, setLoginInfo] }}>

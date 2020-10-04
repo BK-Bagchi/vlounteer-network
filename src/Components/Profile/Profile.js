@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import Navbar from '../Home/Navbar'
-import { GlobalData } from '../Main/Main'
 
 const Profile = () => {
     const [detectDeleted, checkDeleted] = useState(false)
-    const loginInfo = useContext(GlobalData).login[0]
+    const loginInfo = JSON.parse(sessionStorage.getItem('loginInfo'))
     const [registeredWorks, setRegisteredWorks] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:4000/seeVolunteerWork', {
+        fetch('https://agile-plains-56011.herokuapp.com/seeVolunteerWork', {
             method: 'POST',
             body: JSON.stringify({ userEmail: loginInfo.email }),
             headers: { 'Content-Type': 'application/json' }
@@ -19,7 +18,7 @@ const Profile = () => {
     }, [detectDeleted])
 
     const cancelVolunteering = (id) => {
-        fetch('http://localhost:4000/cancelVolunteering', {
+        fetch('https://agile-plains-56011.herokuapp.com/cancelVolunteering', {
             method: 'DELETE',
             body: JSON.stringify({ id: id }),
             headers: { 'Content-Type': 'application/json' }

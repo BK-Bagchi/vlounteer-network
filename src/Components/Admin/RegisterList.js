@@ -6,12 +6,12 @@ const RegisterList = () => {
     const [checkDeleted, setCheckDeleted] = useState(false)
     const [registeredVolunteers, checkRegisteredVolunteers] = useState([])
     useEffect(() => {
-        fetch('http://localhost:4000/adminSeeAddEvents')
+        fetch('https://agile-plains-56011.herokuapp.com/adminSeeAddEvents')
             .then(res => res.json())
             .then(data => checkRegisteredVolunteers(data))
     }, [checkDeleted])
     const deleteVolunteeringWork = (id) => {
-        fetch('http://localhost:4000/cancelVolunteering', {
+        fetch('https://agile-plains-56011.herokuapp.com/cancelVolunteering', {
             method: 'DELETE',
             body: JSON.stringify({ id: id }),
             headers: { 'Content-Type': 'application/json' }

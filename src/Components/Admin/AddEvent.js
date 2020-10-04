@@ -35,7 +35,7 @@ const AddEvent = () => {
             setErrorMessage({ ...errorMessage, date: '' })
 
         if (name) {
-            fetch('http://localhost:4000/adminInsertEvent', {
+            fetch('https://agile-plains-56011.herokuapp.com/adminInsertEvent', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formInfo)

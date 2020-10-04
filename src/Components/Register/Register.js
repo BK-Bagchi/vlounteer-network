@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import './Register.css'
 import Logo from '../../Resources/logos/Group1329.png'
 import { useHistory, useLocation } from 'react-router-dom'
-import { GlobalData } from '../Main/Main'
 
 const useQuery = () => new URLSearchParams(useLocation().search)
 
@@ -11,7 +10,7 @@ const Register = () => {
     const query = useQuery()
     const [name, image] = [query.get('name'), query.get('image')]
 
-    const loginInfo = useContext(GlobalData).login[0]
+    const loginInfo = JSON.parse(sessionStorage.getItem('loginInfo'))
     const [formInfo, setFormInfo] = useState({
         userName: loginInfo.displayName, userEmail: loginInfo.email, date: '', volunteeringWork: name, image: image, description: ''
     })
@@ -30,7 +29,7 @@ const Register = () => {
             return
         }
 
-        fetch('http://localhost:4000/registerVolunteerWork', {
+        fetch('https://agile-plains-56011.herokuapp.com/registerVolunteerWork', {
             method: 'POST',
             body: JSON.stringify(formInfo),
             headers: { 'Content-Type': 'application/json' }
