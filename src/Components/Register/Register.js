@@ -9,11 +9,11 @@ const useQuery = () => new URLSearchParams(useLocation().search)
 const Register = () => {
     const history = useHistory()
     const query = useQuery()
-    const [id, name] = [query.get('id'), query.get('name')]
+    const [name, image] = [query.get('name'), query.get('image')]
 
     const loginInfo = useContext(GlobalData).login[0]
     const [formInfo, setFormInfo] = useState({
-        userName: loginInfo.displayName, userEmail: loginInfo.email, date: '', volunteeringWork: name, description: ''
+        userName: loginInfo.displayName, userEmail: loginInfo.email, date: '', volunteeringWork: name, image: image, description: ''
     })
     const [errorMessage, setErrorMessage] = useState({
         date: ''

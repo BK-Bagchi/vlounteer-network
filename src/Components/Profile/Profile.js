@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Profile.css'
 import Navbar from '../Home/Navbar'
-import Picture from '../../Resources/images/extraVolunteer.png'
 import { GlobalData } from '../Main/Main'
 
 const Profile = () => {
@@ -37,11 +36,11 @@ const Profile = () => {
             <section className="profile d-flex flex-wrap align-items-center justify-content-center">
                 {
                     registeredWorks.map(work => {
-                        const { _id, date, volunteeringWork } = work
+                        const { _id, date, volunteeringWork, image } = work
                         return (
                             <div key={_id} className="row item">
                                 <div className="col-6 p-0">
-                                    <img className="w-100" src={Picture} alt="Volunteering Item" />
+                                    <img className="w-100" src={require(`../../Resources/images/${image}`)} alt="Volunteering Item" />
                                 </div>
                                 <div className="col-6 position-relative">
                                     <h4>{volunteeringWork}</h4>

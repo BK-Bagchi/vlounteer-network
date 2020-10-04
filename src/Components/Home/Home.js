@@ -13,8 +13,8 @@ const Home = () => {
     }, [])
 
     const volunteeringRegister = (type) => {
-        const { _id, name } = type
-        history.push(`/register?id=${_id}&name=${name}`)
+        const { image, name } = type
+        history.push(`/register?name=${name}&image=${image}`)
     }
 
     return (
