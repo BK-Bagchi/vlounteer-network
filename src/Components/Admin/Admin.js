@@ -4,6 +4,8 @@ import { Link, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom
 import Logo from '../../Resources/logos/Group1329.png'
 import RegisterList from './RegisterList'
 import AddEvent from './AddEvent'
+import AddIcon from '@material-ui/icons/Add'
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt'
 
 const Admin = () => {
     const history = useHistory()
@@ -13,8 +15,8 @@ const Admin = () => {
             <div className="col-3 p-0">
                 <img className="w-100" src={Logo} alt="Logo" onClick={() => history.push('/')} />
                 <ul className="p-3">
-                    <Link to={`${url}/volunteerList`}><li>Volunteer register list</li></Link>
-                    <Link to={`${url}/addEvent`}><li>Add Event</li></Link>
+                    <Link to={`${url}/volunteerList`}><li><PeopleAltIcon /> Volunteer register list</li></Link>
+                    <Link to={`${url}/addEvent`}><li><AddIcon /> Add Event</li></Link>
                 </ul>
             </div>
             <div className="col-9 p-0">

@@ -1,8 +1,17 @@
 .admin li{
     list-style: none;
+    margin: 10px;
 }
 .admin a{
     color: black;
+}
+.register-list,
+.add-event{
+    background: #F5F6FA;
+    border-radius: 25px;
+    height:90vh;
+    overflow: auto;
+    margin-left: 20px;
 }
 .register-list thead tr{
     background: #F5F6FA;
@@ -24,4 +33,30 @@
     color: white;
     background-color: red;
     border-radius: 5px;
+}
+
+.add-event form input, 
+.add-event form textarea {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+    outline: none;
+    margin: 5px 0 0;
+    padding:0 5px;
+}
+.add-event form textarea{
+    height: 100px;
+}
+.add-event form input[type="submit"]{
+    background: royalblue;
+    color: white;
+    width: 120px;
+    height: 40px;
+    margin: 20px 40px;
+    border-radius: 5px;
+}
+.add-event form input[type="file"]{
+    border: none;
 }
