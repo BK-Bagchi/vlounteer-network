@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import './Profile.css'
 import Navbar from '../Home/Navbar'
 import Picture from '../../Resources/images/extraVolunteer.png'
-import { GlobalData } from '../Main/Main';
+import { GlobalData } from '../Main/Main'
 
 const Profile = () => {
+    const [datecteDeleted, checkDeleted] = useState(false)
     const loginInfo = useContext(GlobalData).login[0]
     const [registeredWorks, setRegisteredWorks] = useState([])
 
@@ -16,7 +17,20 @@ const Profile = () => {
         })
             .then(res => res.json())
             .then(data => setRegisteredWorks(data))
-    }, [])
+    }, [datecteDeleted])
+
+    const cancelVolunteering = (id) => {
+        fetch('http://localhost:4000/cancelVolunteering', {
+            method: 'DELETE',
+            body: JSON.stringify({ id: id }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert(`${data.deletedCount} work canceled`)
+                checkDeleted(true)
+            })
+    }
     return (
         <>
             <Navbar />
@@ -32,7 +46,7 @@ const Profile = () => {
                                 <div className="col-6 position-relative">
                                     <h4>{volunteeringWork}</h4>
                                     <h6>{date}</h6>
-                                    <button>Cancel</button>
+                                    <button onClick={() => cancelVolunteering(_id)}>Cancel</button>
                                 </div>
                             </div>
                         )

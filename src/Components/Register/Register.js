@@ -37,7 +37,10 @@ const Register = () => {
             headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
-            .then(data => alert(`${data.insertedCount} volunteering work inserted successfully`))
+            .then(data => {
+                alert(`${data.insertedCount} volunteering work inserted successfully`)
+                history.push('/profile')
+            })
             .catch(err => {
                 alert('Oops!! Something went wrong during inserting data')
                 console.log(err)
