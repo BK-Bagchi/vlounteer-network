@@ -7,10 +7,14 @@ import Admin from '../Admin/Admin'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import PrivateRoute from '../PrivateRoute/PrivateRoute'
 
+if (!JSON.parse(sessionStorage.getItem('loginInfo')))
+    sessionStorage.setItem('loginInfo', JSON.stringify({}))
+
 export const GlobalData = React.createContext()
 const Main = () => {
     const [loginInfo, setLoginInfo] = useState({})
-    if (loginInfo.isLoggedIn) sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo))
+    if (loginInfo.isLoggedIn)
+        sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo))
 
     return (
         <>
