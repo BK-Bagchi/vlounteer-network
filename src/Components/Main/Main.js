@@ -24,9 +24,9 @@ const Main = () => {
                         <PrivateRoute path='/register'>
                             <Register />
                         </PrivateRoute>
-                        <Route path='/profile'>
+                        <PrivateRoute path='/profile'>
                             <Profile />
-                        </Route>
+                        </PrivateRoute>
                         <Route path='*'>
                             <Redirect push to='/' />
                         </Route>

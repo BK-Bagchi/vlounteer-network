@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Home.css'
 import Logo from '../../Resources/logos/Group1329.png'
 import { Link, useHistory } from 'react-router-dom'
+import { GlobalData } from '../Main/Main';
 
 const Navbar = () => {
     const history = useHistory()
+    const loginInfo = useContext(GlobalData).login[0]
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
             <img className="logo" src={Logo} alt="Logo" onClick={() => history.push('/')} />
@@ -18,7 +20,12 @@ const Navbar = () => {
                     <li className="nav-link" >Events </li>
                     <li className="nav-link" >Blogs </li>
                     <li className="nav-link" >
-                        <button className="register" onClick={() => history.push('/register')}>Register</button>
+                        {
+                            loginInfo.isLoggedIn ?
+                                <Link to='/profile'>{loginInfo.displayName}</Link> :
+                                <button className="register" onClick={() => history.push('/sign')}>Login</button>
+                        }
+
                     </li>
                     <li className="nav-link" >
                         <button className="admin">Admin</button>
