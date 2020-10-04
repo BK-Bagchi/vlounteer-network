@@ -12,7 +12,6 @@ const Register = () => {
     const [id, name] = [query.get('id'), query.get('name')]
 
     const loginInfo = useContext(GlobalData).login[0]
-    // const loginInfo = { isLoggedIn: true, displayName: "BK", email: "bk@bk.com" }
     const [formInfo, setFormInfo] = useState({
         userName: loginInfo.displayName, userEmail: loginInfo.email, date: '', volunteeringWork: name, description: ''
     })

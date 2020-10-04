@@ -1,0 +1,27 @@
+.admin li{
+    list-style: none;
+}
+.admin a{
+    color: black;
+}
+.register-list thead tr{
+    background: #F5F6FA;
+    border-collapse: separate !important;
+}
+.register-list table{
+    background: white;
+}
+.register-list th{
+    padding:10px;
+}
+.register-list td {
+    padding:10px 5px;
+}
+.register-list tr:nth-child(even) {
+    background: #F5F6FA;
+}
+.register-list .trash{
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+}

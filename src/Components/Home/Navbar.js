@@ -28,7 +28,7 @@ const Navbar = () => {
 
                     </li>
                     <li className="nav-link" >
-                        <button className="admin">Admin</button>
+                        <button className="admin" onClick={() => history.push('/admin/volunteerList')}>Admin</button>
                     </li>
                 </ul>
             </div>

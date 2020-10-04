@@ -5,7 +5,7 @@ import Picture from '../../Resources/images/extraVolunteer.png'
 import { GlobalData } from '../Main/Main'
 
 const Profile = () => {
-    const [datecteDeleted, checkDeleted] = useState(false)
+    const [detectDeleted, checkDeleted] = useState(false)
     const loginInfo = useContext(GlobalData).login[0]
     const [registeredWorks, setRegisteredWorks] = useState([])
 
@@ -17,7 +17,7 @@ const Profile = () => {
         })
             .then(res => res.json())
             .then(data => setRegisteredWorks(data))
-    }, [datecteDeleted])
+    }, [detectDeleted])
 
     const cancelVolunteering = (id) => {
         fetch('http://localhost:4000/cancelVolunteering', {
