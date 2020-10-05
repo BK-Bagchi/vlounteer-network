@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import Navbar from '../Home/Navbar'
+import { makeStyles } from '@material-ui/core/styles'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        '& > * + *': {
+            marginLeft: theme.spacing(2),
+        },
+    },
+}));
 
 const Profile = () => {
+    const classes = useStyles()
     const [loading, setLoading] = useState(true)
     const [detectDeleted, checkDeleted] = useState(false)
     const loginInfo = JSON.parse(sessionStorage.getItem('loginInfo'))
@@ -38,7 +51,10 @@ const Profile = () => {
             <Navbar />
             <section className="profile d-flex flex-wrap align-items-center justify-content-center">
                 {
-                    loading ? <h3>Loading...</h3>
+                    loading ?
+                        <div className={classes.root}>
+                            <CircularProgress />
+                        </div>
                         : <>
                             {
                                 registeredWorks.map(work => {

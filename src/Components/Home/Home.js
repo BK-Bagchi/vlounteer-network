@@ -2,8 +2,20 @@ import React, { useState, useEffect } from 'react'
 import './Home.css'
 import Navbar from './Navbar'
 import { useHistory } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        '& > * + *': {
+            marginLeft: theme.spacing(2),
+        },
+    },
+}));
 const Home = () => {
+    const classes = useStyles()
     const history = useHistory()
     const [loading, setLoading] = useState(true)
     const [volunteeringTypes, setVolunteeringTypes] = useState([])
@@ -32,7 +44,10 @@ const Home = () => {
                 </div>
                 <main className="volunteering-item px-5 w-100 d-flex flex-wrap justify-content-center">
                     {
-                        loading ? <h3>Loading...</h3>
+                        loading ?
+                            <div className={classes.root}>
+                                <CircularProgress />
+                            </div>
                             : <>
                                 {
                                     volunteeringTypes.map(type => {

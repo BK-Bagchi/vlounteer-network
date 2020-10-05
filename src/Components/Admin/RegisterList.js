@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import './Admin.css'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { makeStyles } from '@material-ui/core/styles'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        '& > * + *': {
+            marginLeft: theme.spacing(2),
+        },
+    },
+}));
 const RegisterList = () => {
+    const classes = useStyles()
     const [checkDeleted, setCheckDeleted] = useState(false)
     const [loading, setLoading] = useState(true)
     const [registeredVolunteers, checkRegisteredVolunteers] = useState([])
@@ -41,7 +53,10 @@ const RegisterList = () => {
                 </thead>
                 <tbody className="px-5">
                     {
-                        loading ? <h3>Loading...</h3>
+                        loading ?
+                            <div className={classes.root}>
+                                <CircularProgress />
+                            </div>
                             : <>
                                 {
                                     registeredVolunteers.map(volunteer => {
