@@ -37,12 +37,13 @@ const Home = () => {
         <>
             <Navbar />
             <section className="volunteering-contents py-4">
+                <div className="background-image"></div>
                 <h2 className="text-center text-uppercase mb-4">I grow by helping people in need</h2>
                 <div className="search-form d-flex justify-content-center mb-4">
                     <input type="text" placeholder="Search..." />
                     <button>Search</button>
                 </div>
-                <main className="volunteering-item px-5 w-100 d-flex flex-wrap justify-content-center">
+                <main className="volunteering-item container px-5 w-100 d-flex flex-wrap justify-content-center">
                     {
                         loading ?
                             <div className={classes.root}>

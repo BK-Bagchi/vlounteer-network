@@ -15,3 +15,14 @@
     padding:2px 20px;
     border-radius: 30px;
 }
+.signIn-area .cursor{
+    cursor: pointer;
+    transition: 0.5s;
+}
+.signIn-area .cursor:hover{
+    color: white;
+    background:#1997ad;
+    transform: scale(1.05);
+    box-shadow: 0px 3px 15px #1997ad;
+    border: none;
+}

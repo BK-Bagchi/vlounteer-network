@@ -38,7 +38,7 @@ const Sign = () => {
             <img className="top-logo my-4" src={Logo} alt="Logo" onClick={() => history.push('/')} />
             <main>
                 <h4 className="text-center mb-4">Login With</h4>
-                <div className="d-flex mb-3 align-items-center justify-content-between" onClick={googleSignIn}>
+                <div className="d-flex mb-3 align-items-center justify-content-between cursor" onClick={googleSignIn}>
                     <img src={Google} alt="Google Logo" />
                     <p className="mx-auto m-0">Continue with Google</p>
                 </div>
